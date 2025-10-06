@@ -1,7 +1,6 @@
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
-// Load tasks from localStorage
 window.onload = () => {
   const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
   storedTasks.forEach(task => renderTask(task.text, task.completed));
@@ -20,14 +19,12 @@ function renderTask(text, completed = false) {
   const span = document.createElement('span');
   span.textContent = text;
   if (completed) li.classList.add('completed');
-
-  // Toggle complete on click
+  
   span.addEventListener('click', () => {
     li.classList.toggle('completed');
     saveTasks();
   });
 
-  // --- Edit Button ---
   const editBtn = document.createElement('button');
   editBtn.textContent = '✏️';
   editBtn.className = 'edit-btn';
@@ -39,7 +36,6 @@ function renderTask(text, completed = false) {
     }
   };
 
-  // --- Delete Button ---
   const delBtn = document.createElement('button');
   delBtn.textContent = '🗑️';
   delBtn.className = 'delete-btn';
@@ -62,3 +58,4 @@ function saveTasks() {
   });
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
